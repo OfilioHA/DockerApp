@@ -1,11 +1,7 @@
-version: '3'
+version: '2.3'
 services:
   projects:
     build: .
     ports:
-      - 80:4500
+      - 4500:80
       - 443:443
-    volumes:
-      - Proyectos:/var/html
-volumes:
-  Proyectos:
