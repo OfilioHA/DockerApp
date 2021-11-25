@@ -1,7 +1,12 @@
 version: '2.3'
 services:
   projects:
+    container_name: system_control
     build: .
     ports:
       - 4500:80
       - 443:443
+    volumes:
+      - ./Projects:/var/www
+      - ./Virtualhost:/etc/apache2/sites-available
+      - ./SSL:/etc/ssl/certs
