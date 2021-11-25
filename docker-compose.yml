@@ -1,0 +1,12 @@
+version: '3'
+services:
+  projects:
+    container_name: 'systems_docker'
+    #restart: 'always'
+    build: .
+    ports:
+      - "80:4500"
+    volumes:
+      - Proyectos:/var/html
+volumes:
+  Proyectos: null
