@@ -2,7 +2,7 @@ version: '3'
 services:
   postgres:
     build:
-      context:
+      context: null
       dockerfile: dockerfile
     container_name: postgres
     restart: always
@@ -15,11 +15,11 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       postgres_network:
-       aliases:
-         - postgres_host
+        aliases:
+          - postgres_host
   volumes:
-     pgdata: {}
+    pgdata: {}
   networks:
-     postgres_network:
-       name: postgres_net
-       drive: bridge                 
+    postgres_network:
+      name: postgres_net
+      drive: bridge

@@ -10,3 +10,20 @@ services:
       - ./Projects:/var/www
       - ./Virtualhost:/etc/apache2/sites-available
       - ./SSL:/etc/ssl/certs
+    links:
+      - database
+
+  database:
+    user: postgres:postgres
+    command: postgres -c listen_addresses='*'
+    ports:
+      - 5431:5432
+    container_name: postgres_db
+    image: postgres:9.6
+    environment:
+      #POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./Database:/var/lib/postgresql/data
