@@ -10,8 +10,9 @@ services:
       - ./Projects/web1:/var/www
       - ./Virtualhost/web1:/etc/apache2/sites-available
      # - ./SSL:/etc/ssl/certs
-    links: 
+    depends_on: 
       - web_2
+      - database
 
   web_2:
     container_name: system_control2
