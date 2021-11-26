@@ -9,3 +9,40 @@
     restart: always
     ports:
       - 8080:8080
+
+version: '2.3'
+services:
+  projects:
+    container_name: system_control
+    build: .
+    ports:
+      - 4500:80
+      - 443:443
+    volumes:
+      - ./Projects:/var/www
+      - ./Virtualhost:/etc/apache2/sites-available
+      - ./SSL:/etc/ssl/certs
+    links:
+      - database
+
+  database:
+    user: postgres:postgres
+    command: postgres -c listen_addresses='*'
+    ports:
+      - 5431:5432
+    container_name: postgres_db
+    image: postgres
+    restart: always
+    environment:
+      #POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./Database:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
